@@ -5,6 +5,7 @@ import Navbar from "@/components/layouts/navbar/Navbar";
 import Footer from "@/components/layouts/footer/Footer";
 import GlobalBackground from "@/components/layouts/GlobalBackground";
 import ContactModal from "@/components/ui/contact-modal";
+import FaqModal from "@/components/ui/faq-modal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <ContactModal />
+        <FaqModal />
         <Footer />
       </body>{" "}
     </html>

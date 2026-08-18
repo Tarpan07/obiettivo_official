@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Mail } from "lucide-react";
 
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number | string;
@@ -45,6 +44,25 @@ const Facebook = ({ size = 24, className, ...props }: CustomIconProps) => (
   </svg>
 );
 
+const Youtube = ({ size = 24, className, ...props }: CustomIconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.56 49.56 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+    <path d="m10 15 5-3-5-3z" />
+  </svg>
+);
+
 const Linkedin = ({ size = 24, className, ...props }: CustomIconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -67,24 +85,24 @@ const Linkedin = ({ size = 24, className, ...props }: CustomIconProps) => (
 
 const socials = [
   {
-    icon: Instagram,
-    label: "Instagram",
-    href: "#",
-  },
-  {
     icon: Facebook,
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/share/1DUPsVrAYf/",
   },
   {
-    icon: Mail,
-    label: "Email",
-    href: "#",
+    icon: Youtube,
+    label: "YouTube",
+    href: "https://youtube.com/@obiettivo-photographyclubn5412?si=SMkBBy0GHxzY4KtU",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/obiettivo_official?igsh=MTN4ZjB6cm1sMDloZQ==",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/obiettivo/",
   },
 ];
 
@@ -99,6 +117,8 @@ export default function HeroSocials() {
             <Link
               key={item.label}
               href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative"
             >
               <Icon

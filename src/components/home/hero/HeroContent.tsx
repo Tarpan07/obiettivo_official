@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroButton from "./HeroButton";
 import { DiaTextReveal } from "@/registry/magicui/dia-text-reveal";
@@ -52,20 +53,25 @@ export default function HeroContent() {
               variants={itemVariants}
               className="flex justify-start md:justify-center"
             >
-              <Image
-                src="/logo.png"
-                alt="Obiettivo Logo"
-                width={220}
-                height={220}
-                priority
-                className="
-                  h-auto
-                  w-[140px]
-                  md:w-[180px]
-                  object-contain
-                  drop-shadow-[0_0_35px_rgba(255,255,255,0.18)]
-                "
-              />
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="Obiettivo Logo"
+                  width={220}
+                  height={220}
+                  priority
+                  className="
+                    h-auto
+                    w-[140px]
+                    md:w-[180px]
+                    object-contain
+                    drop-shadow-[0_0_35px_rgba(255,255,255,0.18)]
+                    transition-transform
+                    duration-300
+                    hover:scale-105
+                  "
+                />
+              </Link>
             </motion.div>
 
             {/* Text */}
