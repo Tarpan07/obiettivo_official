@@ -1,15 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Sora, Roboto, Syne, Syncopate, Montserrat, Short_Stack } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layouts/navbar/Navbar";
+import Footer from "@/components/layouts/footer/Footer";
+import GlobalBackground from "@/components/layouts/GlobalBackground";
+import ContactModal from "@/components/ui/contact-modal";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sora = Sora({
   subsets: ["latin"],
+  variable: "--font-sora",
+});
+
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+});
+
+const syncopate = Syncopate({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-syncopate",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+
+const shortStack = Short_Stack({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-short-stack",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +57,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} ${roboto.variable} ${syne.variable} ${syncopate.variable} ${montserrat.variable} ${shortStack.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className={`${sora.className} min-h-screen bg-[#050505] text-neutral-200 overflow-x-hidden flex flex-col`}>
+        <GlobalBackground />
+        <Navbar />
+        {children}
+        <ContactModal />
+        <Footer />
+      </body>{" "}
     </html>
   );
 }
