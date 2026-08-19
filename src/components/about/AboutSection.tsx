@@ -102,7 +102,7 @@ export default function AboutSection() {
           </div>
 
           {/* CTA: Meet the team Button */}
-          <div className="mt-12">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
               href="/team"
               className="
