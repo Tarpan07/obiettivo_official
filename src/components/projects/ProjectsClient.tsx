@@ -69,8 +69,8 @@ export default function ProjectsClient() {
       >
         <ImageScatter
           data={SCATTER_DATA}
-          cardWidth={220}
-          cardHeight={270}
+          cardWidth={260}
+          cardHeight={320}
           animationDuration={0.8}
           animationOverlap={0.45}
           headingFadeDuration={0.4}
@@ -111,7 +111,7 @@ export default function ProjectsClient() {
             <AccordionGallery
               items={ACCORDION_ITEMS}
               defaultIndex={2}
-              expandRatio={0.52}
+              expandRatio={0.55}
               trigger="hover"
               accentColor="#3b82f6"
               overlayColor="#050505"
@@ -123,7 +123,7 @@ export default function ProjectsClient() {
               parallax={0.5}
               tilt={8}
               stagger={0.06}
-              height={460}
+              height={520}
               gap={12}
               radius={16}
               orientation="horizontal"

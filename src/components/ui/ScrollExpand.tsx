@@ -260,7 +260,11 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
             ref={frameRef}
             className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
           >
-            {media}
+            <div className="absolute inset-0 w-full h-full overflow-x-auto overflow-y-hidden touch-pan-x scrollbar-none [&::-webkit-scrollbar]:hidden">
+              <div className="relative min-w-[160vw] md:min-w-full h-full">
+                {media}
+              </div>
+            </div>
             <div
               ref={scrimRef}
               className="absolute inset-0 opacity-0 pointer-events-none bg-[linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.1)_45%,rgba(0,0,0,0.35))]"
@@ -268,7 +272,7 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
             {children ? (
               <div
                 ref={overlayRef}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center p-[6%] opacity-0 [will-change:opacity,transform]"
+                className="absolute inset-0 flex flex-col items-center justify-center text-center p-[6%] opacity-0 pointer-events-none [will-change:opacity,transform]"
               >
                 {children}
               </div>

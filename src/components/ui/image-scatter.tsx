@@ -69,11 +69,11 @@ export function ImageScatter({
 
       // Adaptive card sizing based on display viewport width
       if (w < 640) {
-        cardW = 120;
-        cardH = 150;
+        cardW = 160;
+        cardH = 200;
       } else if (w < 1024) {
-        cardW = 170;
-        cardH = 210;
+        cardW = 210;
+        cardH = 260;
       } else {
         cardW = cardWidth;
         cardH = cardHeight;

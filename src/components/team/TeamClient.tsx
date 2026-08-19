@@ -494,6 +494,7 @@ export default function TeamClient() {
           </div>
         </div>
 
+        {/* Junior Executives ScrollExpand Animation */}
         <div className="w-full relative">
           <ScrollExpand
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&fit=crop&q=80"

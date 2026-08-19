@@ -42,10 +42,9 @@ export default function Navbar() {
             px-6
             transition-all
             duration-500
-            ${
-              scrolled
-                ? "border-white/10 bg-black/75 shadow-[0_10px_35px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-                : "border-white/10 bg-black/50 backdrop-blur-2xl"
+            ${scrolled
+              ? "border-white/10 bg-black/75 shadow-[0_10px_35px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+              : "border-white/10 bg-black/50 backdrop-blur-2xl"
             }
           `}
         >
