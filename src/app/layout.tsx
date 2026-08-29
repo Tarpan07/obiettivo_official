@@ -67,7 +67,7 @@ export default function RootLayout({
         <ContactModal />
         <FaqModal />
         <Footer />
-      </body>{" "}
+      </body>
     </html>
   );
 }
