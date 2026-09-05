@@ -4,7 +4,7 @@ interface HeroBackgroundProps {
 }
 
 const bgImages = [
-  "/images/home-bg1.png",
+  "/images/home-bg1.jpg",
   "/images/home-bg2.jpg",
   "/images/home-bg3.jpg",
   "/images/home-bg4.jpg"
