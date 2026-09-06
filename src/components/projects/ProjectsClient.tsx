@@ -152,7 +152,7 @@ export default function ProjectsClient() {
         {/* Project 1: Tasveer */}
         <div className="relative w-full h-screen">
           <ScrollExpand
-            src="/images/home-bg2.jpg"
+            src="/images/home/home-bg2.webp"
             title="TASVEER"
             useWindowScroll
             mediaZoom={1.3}
@@ -190,7 +190,7 @@ export default function ProjectsClient() {
         {/* Project 2: Drishti */}
         <div className="relative w-full h-screen">
           <ScrollExpand
-            src="/images/home-bg3.jpg"
+            src="/images/home/home-bg3.webp"
             title="DRISHTI"
             useWindowScroll
             mediaZoom={1.3}
@@ -228,7 +228,7 @@ export default function ProjectsClient() {
         {/* Project 3: Campus Chronicles */}
         <div className="relative w-full h-screen">
           <ScrollExpand
-            src="/images/home-bg4.jpg"
+            src="/images/home/home-bg4.webp"
             title="CAMPUS"
             useWindowScroll
             mediaZoom={1.3}
