@@ -82,9 +82,9 @@ export default function Footer() {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
-  if (pathname === "/team") return null;
+  if (pathname === "/projects") return null;
 
-const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   if (!email || !description) return;
@@ -139,7 +139,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   return (
-    <footer className="mt-auto w-full border-t border-white/5 bg-transparent text-zinc-400 font-[family-name:var(--font-sora)] select-none">
+    <footer className="mt-auto w-full border-t border-white/5 bg-transparent text-zinc-400 font-[family-name:var(--font-sora)] select-none relative z-20">
       <div className="mx-auto max-w-7xl px-6 pt-10 pb-10 md:pt-14 md:pb-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
           {/* Brand Column */}

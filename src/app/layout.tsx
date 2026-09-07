@@ -58,9 +58,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${sora.variable} ${roboto.variable} ${syne.variable} ${syncopate.variable} ${montserrat.variable} ${shortStack.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} ${roboto.variable} ${syne.variable} ${syncopate.variable} ${montserrat.variable} ${shortStack.variable} h-full antialiased max-w-full overflow-x-hidden`}
     >
-      <body className={`${sora.className} min-h-screen bg-[#050505] text-neutral-200 overflow-x-hidden flex flex-col`}>
+      <body className={`${sora.className} min-h-screen bg-[#050505] text-neutral-200 overflow-x-hidden max-w-full w-full flex flex-col`}>
         <GlobalBackground />
         <Navbar />
         {children}

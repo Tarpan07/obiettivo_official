@@ -5,7 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Globe, Camera, Layers, Video, Users as Users2 } from "lucide-react";
 import DepthCarousel from "@/components/ui/DepthCarousel";
 import { Marquee } from "@/components/ui/marquee";
-import ScrollExpand from "@/components/ui/ScrollExpand";
+import MorphSlider, { MorphItem } from "@/components/ui/MorphSlider";
+import { boardMembers } from "@/data/boardMembers";
+import { seniorExecutives } from "@/data/seniorExecutives";
+import { facultyInCharge, clubSecretary } from "@/data/leadership";
+
+const juniorExecGroupItems: MorphItem[] = [
+  {
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&fit=crop&q=80"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&fit=crop&q=80"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&fit=crop&q=80"
+  }
+];
 
 // Inline Instagram SVG icon
 const Instagram = (props: React.SVGProps<SVGSVGElement>) => (
@@ -90,86 +105,13 @@ export default function TeamClient() {
     setActiveSlide(slide);
   };
 
-  // Board Members Data
-  const boardMembers = [
-    {
-      name: "Ishita Sen",
-      role: "Club President / Co-ordinator",
-      department: "Photography & Curation",
-      email: "ishita@nits.ac.in",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&fit=crop&q=50"
-    },
-    {
-      name: "Rohan Das",
-      role: "Photography Head",
-      department: "Photography Operations",
-      email: "rohan@nits.ac.in",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&fit=crop&q=50"
-    },
-    {
-      name: "Sourav Paul",
-      role: "Cinematography Head",
-      department: "Video & Editing",
-      email: "sourav@nits.ac.in",
-      image: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=600&fit=crop&q=50"
-    },
-    {
-      name: "Aditya Sharma",
-      role: "Web & Tech Head",
-      department: "Design & Development",
-      email: "aditya@nits.ac.in",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&fit=crop&q=50"
-    },
-    {
-      name: "Rahul Verma",
-      role: "Design Coordinator",
-      department: "Creative Branding",
-      email: "rahul@nits.ac.in",
-      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=600&fit=crop&q=50"
-    }
-  ];
-
-  // Senior Executives Data
-  const seniorExecutives = [
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a1.jpg",
-      name: "Patrick Stewart",
-      role: "CEO - Founder",
-    },
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a2.jpg",
-      name: "Alena Rosser",
-      role: "Director of Content",
-    },
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a3.jpg",
-      name: "Fletch Skinner",
-      role: "Tech Manager",
-    },
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a4.jpg",
-      name: "Marc Spector",
-      role: "Director of Content",
-    },
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a5.jpg",
-      name: "Natalia Skinner",
-      role: "Cnippet Researcher",
-    },
-    {
-      image: "https://images.cnippet.dev/image/upload/v1770400411/a6.jpg",
-      name: "David Kim",
-      role: "Engineering Lead",
-    },
-  ];
-
   return (
     <section className="relative w-full bg-transparent text-zinc-100 flex flex-col items-center">
       {/* Background radial glow */}
       <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[70vw] h-[50vh] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none select-none z-0" />
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-7xl w-full px-6 pt-2 pb-12 md:pt-4 md:pb-20 flex flex-col items-center">
+      <div className="relative z-10 max-w-7xl w-full px-6 pt-2 pb-0 md:pt-4 md:pb-0 flex flex-col items-center">
         {/* Header Title */}
         <div className="text-center max-w-3xl mb-8">
           <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-[family-name:var(--font-syncopate)]">
@@ -198,23 +140,23 @@ export default function TeamClient() {
                 {/* FIC details */}
                 <div className="flex flex-col items-start gap-4">
                   <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-blue-500/10 text-blue-400 px-3.5 py-1.5 rounded-full border border-blue-500/15 font-[family-name:var(--font-syncopate)]">
-                    FACULTY-IN-CHARGE
+                    {facultyInCharge.badge}
                   </span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white font-[family-name:var(--font-sora)]">
-                    Dr. Ashish Bhasme
+                    {facultyInCharge.name}
                   </h2>
                   <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest font-[family-name:var(--font-sora)]">
-                    Assistant Professor, Dept. of Electronics & Communication Engineering
+                    {facultyInCharge.designation}
                   </p>
                   <p className="text-sm md:text-base font-light leading-relaxed text-zinc-400 italic mt-3 max-w-xl font-[family-name:var(--font-sora)]">
-                    "Photography is not just about capturing light; it's about preserving a moment that is gone forever. At Obiettivo, we nurture this creative spirit to tell stories that transcend time."
+                    "{facultyInCharge.quote}"
                   </p>
                 </div>
                 {/* FIC Image card */}
                 <div className="relative aspect-[4/5] w-full max-w-[320px] mx-auto md:mr-0 rounded-2xl overflow-hidden border border-white/10 bg-zinc-900 group shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80"
-                    alt="Dr. Ashish Bhasme"
+                    src={facultyInCharge.image}
+                    alt={facultyInCharge.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
@@ -232,30 +174,23 @@ export default function TeamClient() {
                 {/* Secretary details */}
                 <div className="flex flex-col items-start gap-4">
                   <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-blue-500/10 text-blue-400 px-3.5 py-1.5 rounded-full border border-blue-500/15 font-[family-name:var(--font-syncopate)]">
-                    CLUB LEADERSHIP
+                    {clubSecretary.badge}
                   </span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white font-[family-name:var(--font-sora)]">
-                    Club Secretary
+                    {clubSecretary.name}
                   </h2>
                   <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest font-[family-name:var(--font-sora)]">
-                    Core Student Administration
+                    {clubSecretary.designation}
                   </p>
                   <p className="text-sm md:text-base font-light leading-relaxed text-zinc-400 italic mt-3 max-w-xl font-[family-name:var(--font-sora)]">
-                    "Leading a club of talented creators has been an incredible journey. Together, we paint the canvas of NIT Silchar with light, shadow, and countless stories. Our club is built on passion, skill-sharing, and creative collaboration."
+                    "{clubSecretary.quote}"
                   </p>
-                  {/* Miniature labels */}
-                  <div className="mt-4 flex gap-4 text-xs font-sora">
-                    <div>
-                      <span className="text-zinc-500 font-bold block text-[10px] uppercase tracking-wider">SECRETARY</span>
-                      <span className="text-white text-sm font-medium">Ayan Ghosh</span>
-                    </div>
-                  </div>
                 </div>
                 {/* Secretary Image */}
                 <div className="relative aspect-[4/5] w-full max-w-[300px] mx-auto md:mr-0 rounded-2xl overflow-hidden border border-white/10 bg-zinc-900 group shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
                   <img
-                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80"
-                    alt="Ayan Ghosh"
+                    src={clubSecretary.image}
+                    alt={clubSecretary.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
@@ -336,11 +271,11 @@ export default function TeamClient() {
             </div>
 
             {/* Right Side: DepthCarousel */}
-            <div className="relative w-full h-[500px] flex items-center justify-center overflow-visible">
+            <div className="relative w-full h-[480px] sm:h-[540px] md:h-[620px] flex items-center justify-center overflow-hidden md:overflow-visible">
               <DepthCarousel
                 items={boardMembers.map(m => ({ image: m.image, alt: m.name }))}
-                depth={180}
-                spread={90}
+                depth={200}
+                spread={100}
                 tilt={16}
                 tiltDirection="right"
                 perspective={1400}
@@ -349,9 +284,9 @@ export default function TeamClient() {
                 blur={4}
                 autoplay={false}
                 loop
-                cardWidth={220}
-                cardHeight={300}
-                radius={16}
+                cardWidth={270}
+                cardHeight={365}
+                radius={18}
                 tint="#05060a"
                 duration={700}
                 ease="power3.out"
@@ -401,7 +336,7 @@ export default function TeamClient() {
               <h4 className="relative mb-3 font-medium text-3xl text-white tracking-tight sm:text-4xl font-[family-name:var(--font-sora)]">
                 Senior Executives
                 <svg
-                  className="absolute -top-3 -right-6 -z-10 w-20 text-zinc-800"
+                  className="absolute -top-3 -right-6 -z-10 w-20 text-zinc-800 hidden sm:block"
                   fill="currentColor"
                   height="86"
                   viewBox="0 0 108 86"
@@ -422,10 +357,10 @@ export default function TeamClient() {
               </p>
             </div>
 
-            <div className="relative w-full">
+            <div className="relative w-full max-w-full overflow-hidden">
               {/* Fade gradients */}
-              <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-[#050505] to-transparent" />
-              <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-[#050505] to-transparent" />
+              <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 md:w-24 bg-gradient-to-r from-[#050505] to-transparent" />
+              <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 md:w-24 bg-gradient-to-l from-[#050505] to-transparent" />
 
               <Marquee className="[--gap:1.5rem]" pauseOnHover>
                 {seniorExecutives.map((member) => (
@@ -486,40 +421,53 @@ export default function TeamClient() {
           <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-blue-500 font-[family-name:var(--font-syncopate)]">
             Our Futures
           </span>
-          <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-white font-[family-name:var(--font-sora)] tracking-tight">
+          <h3 className="mt-3 text-3xl md:text-5xl font-extrabold text-white font-[family-name:var(--font-sora)] tracking-tight">
             Junior Executives
           </h3>
-          <div className="relative mt-3 h-[1px] w-24 bg-zinc-800 mx-auto overflow-hidden rounded-full">
+          <div className="relative mt-3 h-[1px] w-28 bg-zinc-800 mx-auto overflow-hidden rounded-full">
             <div className="absolute top-0 bottom-0 left-[35%] right-[35%] bg-blue-500 rounded-full" />
           </div>
         </div>
 
-        {/* Junior Executives ScrollExpand Animation */}
-        <div className="w-full relative">
-          <ScrollExpand
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&fit=crop&q=80"
-            alt="Junior Executives Group Photo"
-            title="JUNIOR EXECUTIVES"
-            scrollHint="Scroll to expand"
-            startWidth={70}
-            startHeight={80}
-            startRadius={20}
-            endRadius={0}
-            mediaZoom={1.2}
-            useWindowScroll={true}
-            scrollDistance={0.8}
-            holdDistance={0}
-            className="w-full"
-          >
-            <div className="flex flex-col items-center justify-center text-center max-w-xl px-4 md:px-0">
-              <h4 className="text-xl md:text-2xl font-bold font-sora text-white leading-snug">
-                The Next Generation of Creators
-              </h4>
-              <p className="mt-3 text-xs md:text-sm text-zinc-300 leading-relaxed font-sora">
-                The operational force and raw talent supporting creative execution across all club departments, shaping the future of Obiettivo's visual legacy.
-              </p>
-            </div>
-          </ScrollExpand>
+        {/* Junior Executives MorphSlider Group Photos */}
+        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 h-[480px] md:h-[540px] relative">
+          <MorphSlider
+            items={juniorExecGroupItems}
+            transition="melt"
+            intensity={0.55}
+            aberration={0.35}
+            drift={0.4}
+            autoplay={false}
+            overlayColor="#05060a"
+            duration={1.1}
+            ease="power2.inOut"
+            scale={2.4}
+            autoplayDelay={4}
+            loop
+            radius={16}
+            showCaptions={false}
+            showControls
+            showIndicators
+          />
+        </div>
+
+        {/* Motivational Quote & Description Below Slider */}
+        <div className="w-full max-w-3xl mx-auto mt-10 mb-12 px-6 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-[1px] w-8 md:w-12 bg-blue-500/40" />
+            <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-blue-400/80 font-[family-name:var(--font-syncopate)]">
+              The Core Pillars of Obiettivo
+            </span>
+            <div className="h-[1px] w-8 md:w-12 bg-blue-500/40" />
+          </div>
+
+          <blockquote className="text-sm md:text-base font-medium text-zinc-300/90 font-[family-name:var(--font-sora)] leading-relaxed tracking-tight max-w-2xl mx-auto">
+            &ldquo;Our Junior Executives are the primary pillars, backbone, and driving force of Obiettivo—holding the vision high and executing every single moment into visual legacy.&rdquo;
+          </blockquote>
+
+          <p className="mt-3 text-xs text-zinc-500 font-light leading-relaxed max-w-xl mx-auto font-[family-name:var(--font-inter)]">
+            From ground media coverage and event management to creative brainstorming and production strategy, they power every milestone of the club.
+          </p>
         </div>
       </div>
     </section>

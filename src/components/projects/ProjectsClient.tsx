@@ -3,11 +3,33 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
-import ScrollExpand from "@/components/ui/ScrollExpand";
+import SequentialProjectExpand from "@/components/ui/SequentialProjectExpand";
 import AccordionGallery from "@/components/ui/AccordionGallery";
 import { ImageScatter } from "@/components/ui/image-scatter";
 
-
+const PROJECT_SLIDES = [
+  {
+    src: "/images/home/home-bg2.webp",
+    badge: "Project I",
+    title: "TASVEER",
+    heading: "Tasveer Exhibition",
+    description: "Our flagship annual photography exhibition, highlighting the finest frames captured by club members."
+  },
+  {
+    src: "/images/home/home-bg3.webp",
+    badge: "Project II",
+    title: "DRISHTI",
+    heading: "Drishti Photowalks",
+    description: "A street photography initiative capturing local life, rustic markets, and the vibrant people of Assam."
+  },
+  {
+    src: "/images/home/home-bg4.webp",
+    badge: "Project III",
+    title: "CAMPUS CHRONICLES",
+    heading: "Campus Chronicles",
+    description: "Celebrating the campus of NIT Silchar, documented in frames from tranquil lakes to historic corridors."
+  }
+];
 
 const ACCORDION_ITEMS = [
   { image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80", label: "Alpine Sanctuary", link: "#" },
@@ -149,118 +171,19 @@ export default function ProjectsClient() {
           </div>
         </div>
 
-        {/* Project 1: Tasveer */}
-        <div className="relative w-full h-screen">
-          <ScrollExpand
-            src="/images/home/home-bg2.webp"
-            title="TASVEER"
-            useWindowScroll
-            mediaZoom={1.3}
+        {/* Sequential Multi-Slide Project Scroll */}
+        <div className="relative w-full">
+          <SequentialProjectExpand
+            slides={PROJECT_SLIDES}
+            scrollDistance={2.4}
             startWidth={42}
             startHeight={58}
             startRadius={24}
             endRadius={0}
-            scrollDistance={1.2}
-            holdDistance={0.4}
-            smoothing={0.1}
-            overlayScrim={0.82}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-2xl px-4 text-center"
-            >
-              <span className="text-blue-500 font-[family-name:var(--font-syncopate)] text-xs font-bold tracking-[0.3em] uppercase block mb-3">Project I</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-[family-name:var(--font-sora)] tracking-tight text-white mb-6">
-                Tasveer Exhibition
-              </h2>
-              <p className="text-zinc-300 text-sm md:text-base max-w-lg mx-auto font-[family-name:var(--font-inter)] leading-relaxed mb-8">
-                Our flagship annual photography exhibition, highlighting the finest frames captured by club members. A visual testament to diversity in perception, light, and geometry.
-              </p>
-              <button className="group flex items-center gap-2 mx-auto rounded-full border border-white/15 bg-zinc-950/40 px-8 py-3 text-xs font-medium tracking-wider text-zinc-300 hover:border-blue-500/40 hover:bg-blue-950/15 hover:text-white transition-all duration-300 cursor-pointer">
-                <Eye className="w-4 h-4 text-zinc-400 group-hover:text-blue-400 transition-transform duration-300" />
-                <span>Explore Tasveer</span>
-              </button>
-            </motion.div>
-          </ScrollExpand>
-        </div>
-
-        {/* Project 2: Drishti */}
-        <div className="relative w-full h-screen">
-          <ScrollExpand
-            src="/images/home/home-bg3.webp"
-            title="DRISHTI"
-            useWindowScroll
             mediaZoom={1.3}
-            startWidth={42}
-            startHeight={58}
-            startRadius={24}
-            endRadius={0}
-            scrollDistance={1.2}
-            holdDistance={0.4}
             smoothing={0.1}
             overlayScrim={0.82}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-2xl px-4 text-center"
-            >
-              <span className="text-blue-500 font-[family-name:var(--font-syncopate)] text-xs font-bold tracking-[0.3em] uppercase block mb-3">Project II</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-[family-name:var(--font-sora)] tracking-tight text-white mb-6">
-                Drishti Photowalks
-              </h2>
-              <p className="text-zinc-300 text-sm md:text-base max-w-lg mx-auto font-[family-name:var(--font-inter)] leading-relaxed mb-8">
-                A street photography initiative capturing local life, rustic markets, and the vibrant people of Assam. Drishti bridges storytelling and human emotions.
-              </p>
-              <button className="group flex items-center gap-2 mx-auto rounded-full border border-white/15 bg-zinc-950/40 px-8 py-3 text-xs font-medium tracking-wider text-zinc-300 hover:border-blue-500/40 hover:bg-blue-950/15 hover:text-white transition-all duration-300 cursor-pointer">
-                <Eye className="w-4 h-4 text-zinc-400 group-hover:text-blue-400 transition-transform duration-300" />
-                <span>Explore Drishti</span>
-              </button>
-            </motion.div>
-          </ScrollExpand>
-        </div>
-
-        {/* Project 3: Campus Chronicles */}
-        <div className="relative w-full h-screen">
-          <ScrollExpand
-            src="/images/home/home-bg4.webp"
-            title="CAMPUS"
-            useWindowScroll
-            mediaZoom={1.3}
-            startWidth={42}
-            startHeight={58}
-            startRadius={24}
-            endRadius={0}
-            scrollDistance={1.2}
-            holdDistance={0.4}
-            smoothing={0.1}
-            overlayScrim={0.82}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-2xl px-4 text-center"
-            >
-              <span className="text-blue-500 font-[family-name:var(--font-syncopate)] text-xs font-bold tracking-[0.3em] uppercase block mb-3">Project III</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-[family-name:var(--font-sora)] tracking-tight text-white mb-6">
-                Campus Chronicles
-              </h2>
-              <p className="text-zinc-300 text-sm md:text-base max-w-lg mx-auto font-[family-name:var(--font-inter)] leading-relaxed mb-8">
-                Celebrating the campus of NIT Silchar. From the tranquil lakes reflecting hostel lights to the historic classrooms, this is our home, documented in frames.
-              </p>
-              <button className="group flex items-center gap-2 mx-auto rounded-full border border-white/15 bg-zinc-950/40 px-8 py-3 text-xs font-medium tracking-wider text-zinc-300 hover:border-blue-500/40 hover:bg-blue-950/15 hover:text-white transition-all duration-300 cursor-pointer">
-                <Eye className="w-4 h-4 text-zinc-400 group-hover:text-blue-400 transition-transform duration-300" />
-                <span>Explore</span>
-              </button>
-            </motion.div>
-          </ScrollExpand>
+          />
         </div>
       </section>
     </div>
