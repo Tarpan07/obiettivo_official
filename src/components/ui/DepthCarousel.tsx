@@ -33,6 +33,7 @@ export interface DepthCarouselProps {
   autoplay?: boolean;
   autoplayDelay?: number;
   loop?: boolean;
+  enableWheel?: boolean;
   showControls?: boolean;
   showIndicators?: boolean;
   onChange?: (index: number, item: { image: string; alt?: string }) => void;
@@ -96,6 +97,7 @@ const DepthCarousel = ({
   autoplay = false,
   autoplayDelay = 3200,
   loop = true,
+  enableWheel = false,
   showControls = true,
   showIndicators = true,
   onChange,
@@ -253,7 +255,7 @@ const DepthCarousel = ({
 
   useEffect(() => {
     const el = rootRef.current;
-    if (!el) return;
+    if (!el || !enableWheel) return;
     const onWheel = (e: WheelEvent) => {
       const cfg = cfgRef.current;
       if (cfg.count < 2) return;
@@ -281,7 +283,7 @@ const DepthCarousel = ({
       el.removeEventListener('wheel', onWheel);
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
     };
-  }, [layout, setFocus, notify]);
+  }, [enableWheel, layout, setFocus, notify]);
 
   const onPointerDown = useCallback((e: ReactPointerEvent<HTMLDivElement>) => {
     const cfg = cfgRef.current;
