@@ -46,7 +46,7 @@ export const CylinderCarousel = React.forwardRef<HTMLDivElement, CylinderCarouse
       <div
         ref={ref}
         className={cn(
-          "w-full h-full min-h-[500px] grid place-items-center overflow-hidden",
+          "w-full h-full min-h-[500px] grid place-items-center overflow-clip",
           className
         )}
         style={{
