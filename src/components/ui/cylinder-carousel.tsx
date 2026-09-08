@@ -75,25 +75,33 @@ export const CylinderCarousel = React.forwardRef<HTMLDivElement, CylinderCarouse
             `}
           </style>
           
-          {images.map((img, i) => (
-            <img
-              key={i}
-              src={img.src}
-              alt={img.alt || `Carousel image ${i}`}
-              className={cn(
-                "[grid-area:1/1] object-cover rounded-2xl [backface-visibility:hidden]",
-                cardClassName
-              )}
-              style={{
-                width: "var(--w)",
-                aspectRatio: "7/10",
-                "--i": i,
-                // transform: rotateY(calc(var(--i) * var(--ba))) translateZ(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))))
-                // Note: using modern CSS tan() function. Fallback translates are recommended if targeting very old browsers.
-                transform: "rotateY(calc(var(--i) * var(--ba))) translateZ(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))))",
-              } as React.CSSProperties}
-            />
-          ))}
+{images.map((img, i) => (
+  <div
+    key={i}
+    className="[grid-area:1/1] flex flex-col items-center [backface-visibility:hidden]"
+    style={{
+      width: "var(--w)",
+      "--i": i,
+      transform:
+        "rotateY(calc(var(--i) * var(--ba))) translateZ(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * (var(--ba)))))",
+    } as React.CSSProperties}
+  >
+    <img
+      src={img.src}
+      alt={img.alt || `Carousel image ${i}`}
+      className={cn(
+        "w-full aspect-[7/10] object-cover rounded-2xl",
+        cardClassName
+      )}
+    />
+
+    {img.alt && (
+      <span className="mt-3 text-sm font-medium uppercase tracking-[0.2em] text-white/80 text-center whitespace-nowrap">
+        {img.alt}
+      </span>
+    )}
+  </div>
+))}
         </div>
       </div>
     );

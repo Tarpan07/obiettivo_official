@@ -9,21 +9,21 @@ import { ImageScatter } from "@/components/ui/image-scatter";
 
 const PROJECT_SLIDES = [
   {
-    src: "/images/home/home-bg2.webp",
+    src: "/images/Projects/frames.webp",
     badge: "Project I",
-    title: "TASVEER",
-    heading: "Tasveer Exhibition",
+    title: "FRAMES",
+    heading: "Frames Exhibition",
     description: "Our flagship annual photography exhibition, highlighting the finest frames captured by club members."
   },
   {
-    src: "/images/home/home-bg3.webp",
+    src: "/images/Projects/pixelate.webp",
     badge: "Project II",
-    title: "DRISHTI",
-    heading: "Drishti Photowalks",
+    title: "PIXELATE",
+    heading: "Pixelate Photowalks",
     description: "A street photography initiative capturing local life, rustic markets, and the vibrant people of Assam."
   },
   {
-    src: "/images/home/home-bg4.webp",
+    src: "/images/Projects/campus.webp",
     badge: "Project III",
     title: "CAMPUS CHRONICLES",
     heading: "Campus Chronicles",
