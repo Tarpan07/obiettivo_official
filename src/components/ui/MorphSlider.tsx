@@ -22,6 +22,7 @@ export interface MorphSliderProps {
   scale?: number;
   aberration?: number;
   drift?: number;
+  fitMode?: 'cover' | 'contain';
   autoplay?: boolean;
   autoplayDelay?: number;
   loop?: boolean;
@@ -42,6 +43,7 @@ interface EngineOptions {
   scale: number;
   aberration: number;
   drift: number;
+  fitMode: 'cover' | 'contain';
   overlayColor: string;
   loop: boolean;
 }
@@ -98,6 +100,7 @@ uniform float uTime;
 uniform float uReduce;
 uniform vec2 uPointer;
 uniform vec3 uOverlay;
+uniform int uFitMode;
 
 varying vec2 vUv;
 
@@ -144,17 +147,37 @@ mat2 rot(float a) {
   return mat2(c, -s, s, c);
 }
 
-vec2 coverUV(vec2 uv, vec2 res, vec2 img) {
+vec2 fitUV(vec2 uv, vec2 res, vec2 img) {
   float rA = res.x / max(res.y, 1.0);
   float iA = img.x / max(img.y, 1.0);
   vec2 s = vec2(1.0);
   float ratio = rA / max(iA, 0.0001);
-  if (ratio > 1.0) {
-    s.y = 1.0 / ratio;
+  if (uFitMode == 1) {
+    if (ratio > 1.0) {
+      s.x = ratio;
+    } else {
+      s.y = 1.0 / ratio;
+    }
   } else {
-    s.x = ratio;
+    if (ratio > 1.0) {
+      s.y = 1.0 / ratio;
+    } else {
+      s.x = ratio;
+    }
   }
   return (uv - 0.5) * s + 0.5;
+}
+
+vec3 fetchTex(sampler2D tex, vec2 uv, float ca) {
+  if (uFitMode == 1 && (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0)) {
+    return uOverlay;
+  }
+  vec2 clampedUv = clamp(uv, 0.0, 1.0);
+  return vec3(
+    texture2D(tex, clampedUv + vec2(ca, 0.0)).r,
+    texture2D(tex, clampedUv).g,
+    texture2D(tex, clampedUv - vec2(ca, 0.0)).b
+  );
 }
 
 void main() {
@@ -207,21 +230,13 @@ void main() {
     }
   }
 
-  vec2 sC = coverUV(uvC, uResolution, uCurrentSize);
-  vec2 sN = coverUV(uvN, uResolution, uNextSize);
+  vec2 sC = fitUV(uvC, uResolution, uCurrentSize);
+  vec2 sN = fitUV(uvN, uResolution, uNextSize);
 
   float ca = uReduce < 0.5 ? uAberration * env * 0.03 : 0.0;
 
-  vec3 colC = vec3(
-    texture2D(tCurrent, sC + vec2(ca, 0.0)).r,
-    texture2D(tCurrent, sC).g,
-    texture2D(tCurrent, sC - vec2(ca, 0.0)).b
-  );
-  vec3 colN = vec3(
-    texture2D(tNext, sN + vec2(ca, 0.0)).r,
-    texture2D(tNext, sN).g,
-    texture2D(tNext, sN - vec2(ca, 0.0)).b
-  );
+  vec3 colC = fetchTex(tCurrent, sC, ca);
+  vec3 colN = fetchTex(tNext, sN, ca);
 
   vec3 col = mix(colC, colN, m);
 
@@ -338,7 +353,8 @@ class MorphEngine {
         uTime: { value: 0 },
         uReduce: { value: this.reducedMotion ? 1 : 0 },
         uPointer: { value: [0.5, 0.5] },
-        uOverlay: { value: hexToRgb(opts.overlayColor) }
+        uOverlay: { value: hexToRgb(opts.overlayColor) },
+        uFitMode: { value: opts.fitMode === 'contain' ? 1 : 0 }
       }
     });
 
@@ -392,6 +408,7 @@ class MorphEngine {
     this.program.uniforms.uAberration.value = opts.aberration;
     this.program.uniforms.uDrift.value = opts.drift;
     this.program.uniforms.uOverlay.value = hexToRgb(opts.overlayColor);
+    this.program.uniforms.uFitMode.value = opts.fitMode === 'contain' ? 1 : 0;
   }
 
   private loop(t: number): void {
@@ -556,6 +573,7 @@ export default function MorphSlider({
   scale = 2.4,
   aberration = 0.35,
   drift = 0.4,
+  fitMode = 'contain',
   autoplay = false,
   autoplayDelay = 4,
   loop = true,
@@ -580,10 +598,11 @@ export default function MorphSlider({
     scale,
     aberration,
     drift,
+    fitMode,
     overlayColor,
     loop
   });
-  optsRef.current = { transition, duration, ease, intensity, scale, aberration, drift, overlayColor, loop };
+  optsRef.current = { transition, duration, ease, intensity, scale, aberration, drift, fitMode, overlayColor, loop };
 
   useEffect(() => {
     if (!containerRef.current) return undefined;

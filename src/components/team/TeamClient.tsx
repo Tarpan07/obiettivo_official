@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Globe, Camera, Layers, Video, Users as Users2 } from "lucide-react";
+import { Globe, Camera, Layers, Video, Users as Users2 } from "lucide-react";
 import DepthCarousel from "@/components/ui/DepthCarousel";
 import { Marquee } from "@/components/ui/marquee";
 import MorphSlider, { MorphItem } from "@/components/ui/MorphSlider";
@@ -10,15 +10,24 @@ import { boardMembers } from "@/data/boardMembers";
 import { seniorExecutives } from "@/data/seniorExecutives";
 import { facultyInCharge, clubSecretary } from "@/data/leadership";
 
-const juniorExecGroupItems: MorphItem[] = [
+const mobileJuniorExecItems: MorphItem[] = [
   {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&fit=crop&q=80"
+    image: "/images/team/junior/junior-2.webp"
   },
   {
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&fit=crop&q=80"
+    image: "/images/team/junior/junior-3.webp"
   },
   {
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&fit=crop&q=80"
+    image: "/images/team/junior/dsc.webp"
+  }
+];
+
+const desktopJuniorExecItems: MorphItem[] = [
+  {
+    image: "/images/team/junior/desktop-1.webp"
+  },
+  {
+    image: "/images/team/junior/dsc.webp"
   }
 ];
 
@@ -64,8 +73,19 @@ export default function TeamClient() {
   const [activeSlide, setActiveSlide] = useState<"fic" | "secretaries">("fic");
   const [progress, setProgress] = useState(0);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
+  const [activeSeniorMember, setActiveSeniorMember] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Restart timer & progress
   const startAutoplay = () => {
@@ -232,9 +252,9 @@ export default function TeamClient() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] gap-8 items-center w-full min-h-[480px]">
-            {/* Left Side: Active member info with smooth animation */}
-            <div className="flex flex-col justify-center min-h-[220px] lg:min-h-[300px] border border-white/5 bg-zinc-950/40 backdrop-blur-md rounded-3xl p-8 relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] gap-4 sm:gap-6 lg:gap-8 items-center w-full min-h-[380px] lg:min-h-[480px]">
+            {/* Member Info Card: order-2 on mobile (below photo), order-1 on desktop */}
+            <div className="order-2 lg:order-1 flex flex-col justify-center min-h-[140px] lg:min-h-[300px] border border-white/5 bg-zinc-950/40 backdrop-blur-md rounded-3xl p-5 md:p-8 relative overflow-hidden text-center lg:text-left">
               {/* Decorative side accent line */}
               <div className="absolute left-0 top-[20%] bottom-[20%] w-[3px] bg-blue-500 rounded-r-lg" />
 
@@ -245,33 +265,25 @@ export default function TeamClient() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 15 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="flex flex-col items-start"
+                  className="flex flex-col items-center lg:items-start"
                 >
                   <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 font-sora">
                     {boardMembers[activeBoardIndex].department}
                   </span>
 
-                  <h4 className="mt-3 text-3xl md:text-4xl font-extrabold text-white font-[family-name:var(--font-sora)] tracking-tight leading-tight">
+                  <h4 className="mt-2 md:mt-3 text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-[family-name:var(--font-sora)] tracking-tight leading-tight">
                     {boardMembers[activeBoardIndex].name}
                   </h4>
 
-                  <p className="mt-2 text-sm font-semibold tracking-wider text-blue-500 uppercase font-sora">
+                  <p className="mt-1.5 md:mt-2 text-xs sm:text-sm font-semibold tracking-wider text-blue-500 uppercase font-sora">
                     {boardMembers[activeBoardIndex].role}
                   </p>
-
-                  <a
-                    href={`mailto:${boardMembers[activeBoardIndex].email}`}
-                    className="mt-8 flex items-center gap-2.5 text-[11px] md:text-xs text-zinc-400 hover:text-blue-400 hover:border-blue-500/20 hover:bg-blue-950/10 transition-all duration-300 bg-white/5 border border-white/5 px-4.5 py-3 rounded-xl w-fit cursor-pointer font-sora shadow-sm"
-                  >
-                    <Mail className="w-4 h-4 text-blue-400" />
-                    <span>{boardMembers[activeBoardIndex].email}</span>
-                  </a>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Right Side: DepthCarousel */}
-            <div className="relative w-full h-[480px] sm:h-[540px] md:h-[620px] flex items-center justify-center overflow-hidden md:overflow-visible">
+            {/* DepthCarousel Photo: order-1 on mobile (above info), order-2 on desktop */}
+            <div className="order-1 lg:order-2 relative w-full h-[350px] sm:h-[440px] md:h-[540px] lg:h-[620px] flex items-center justify-center overflow-hidden md:overflow-visible">
               <DepthCarousel
                 items={boardMembers.map(m => ({ image: m.image, alt: m.name }))}
                 depth={200}
@@ -365,13 +377,17 @@ export default function TeamClient() {
               <Marquee className="[--gap:1.5rem]" pauseOnHover>
                 {seniorExecutives.map((member) => (
                   <div
-                    className="group flex w-60 shrink-0 flex-col"
+                    className="group flex w-60 shrink-0 flex-col cursor-pointer select-none"
                     key={member.name}
+                    onClick={() => setActiveSeniorMember((prev) => (prev === member.name ? null : member.name))}
+                    onTouchStart={() => setActiveSeniorMember(member.name)}
                   >
                     <div className="relative h-80 w-full overflow-hidden rounded-2xl border border-white/5 bg-zinc-950/40">
                       <img
                         alt={member.name}
-                        className="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+                        className={`h-full w-full object-cover transition-all duration-300 group-hover:grayscale-0 group-active:grayscale-0 active:grayscale-0 ${
+                          activeSeniorMember === member.name ? "grayscale-0 scale-[1.02]" : "grayscale"
+                        }`}
                         src={member.image}
                       />
                       <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-xl bg-zinc-950/80 backdrop-blur-xs p-3 border border-white/5">
@@ -430,9 +446,10 @@ export default function TeamClient() {
         </div>
 
         {/* Junior Executives MorphSlider Group Photos */}
-        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 h-[480px] md:h-[540px] relative">
+        <div className="w-full max-w-3xl lg:max-w-4xl mx-auto px-4 md:px-6 aspect-[4/5] sm:aspect-[4/3] md:aspect-[3464/2190] relative">
           <MorphSlider
-            items={juniorExecGroupItems}
+            items={isMobile ? mobileJuniorExecItems : desktopJuniorExecItems}
+            fitMode="cover"
             transition="melt"
             intensity={0.55}
             aberration={0.35}
@@ -462,7 +479,7 @@ export default function TeamClient() {
           </div>
 
           <blockquote className="text-sm md:text-base font-medium text-zinc-300/90 font-[family-name:var(--font-sora)] leading-relaxed tracking-tight max-w-2xl mx-auto">
-            &ldquo;Our Junior Executives are the primary pillars, backbone, and driving force of Obiettivo—holding the vision high and executing every single moment into visual legacy.&rdquo;
+            &ldquo;Junior Executives are the primary pillars, backbone, and driving force of Obiettivo—holding the vision high and executing every single moment into visual legacy.&rdquo;
           </blockquote>
 
           <p className="mt-3 text-xs text-zinc-500 font-light leading-relaxed max-w-xl mx-auto font-[family-name:var(--font-inter)]">
