@@ -19,15 +19,19 @@ body {
 }
 
 /* Suppress all secondary internal scrollbars across browsers */
-::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-}
-
+html,
+body,
 * {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 @media (prefers-color-scheme: dark) {

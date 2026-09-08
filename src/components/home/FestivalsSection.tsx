@@ -67,8 +67,6 @@ export function FestivalsSection() {
                     <TestimonialsCard 
                         items={FESTIVAL_ITEMS} 
                         width={950} 
-                        autoPlay={true}
-                        autoPlayInterval={5000} 
                     />
                 </div>
             </div>
