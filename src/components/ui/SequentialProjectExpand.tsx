@@ -238,7 +238,7 @@ const SequentialProjectExpand: React.FC<SequentialProjectExpandProps> = ({
   return (
     <div ref={rootRef} className={`relative w-full bg-transparent ${className}`.trim()} style={style}>
       <div ref={trackRef} className="relative w-full bg-transparent">
-        <div ref={stageRef} className="sticky top-0 w-full overflow-hidden bg-transparent">
+        <div ref={stageRef} className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden bg-transparent">
           {/* Individual Slide Cards */}
           {slides.map((slide, idx) => {
             const isLastSlide = idx === slides.length - 1;

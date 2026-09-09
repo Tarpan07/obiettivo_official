@@ -155,7 +155,7 @@ export default function ProjectsClient() {
       </section>
 
       {/* 3. The Projects One-by-One */}
-      <section className="relative w-full z-20 bg-transparent border-t border-white/5 py-4 md:py-6">
+      <section className="relative w-full z-20 bg-transparent border-t border-white/5 pt-4 md:pt-6 pb-0 mb-0">
         <div className="max-w-7xl mx-auto px-6 md:px-12 pt-6 pb-6 text-center">
           <div className="max-w-3xl mx-auto flex flex-col items-center justify-center">
             <div className="flex items-center justify-center gap-1.5 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] font-[family-name:var(--font-syncopate)] text-zinc-500 mb-4">
