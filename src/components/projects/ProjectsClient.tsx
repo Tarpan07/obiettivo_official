@@ -33,11 +33,11 @@ const PROJECT_SLIDES = [
 ];
 
 const ACCORDION_ITEMS = [
-  { image: "/images/Exhibited_Frames/Delicate.webp", label: "Delicate", link: "https://drive.google.com/file/d/1w84aTzGOk4mAUClu9tYriSI5OLFuI_0L/view" },
-  { image: "/images/Exhibited_Frames/Gaze.webp", label: "Gaze", link: "https://drive.google.com/file/d/1lYbip1INLICZRQfq4zIrwJz7sAbAlrWl/view" },
-  { image: "/images/Exhibited_Frames/Ink_&_Imagination.webp", label: "Ink & Imagination", link: "https://drive.google.com/file/d/1kDA0LcvVBX05zZsBcP5efH4fOfYxKbYV/view" },
-  { image: "/images/Exhibited_Frames/Grandeur.webp", label: "Grandeur", link: "https://drive.google.com/file/d/1FPCqeNuVjTtvRJr7LbxlAQkXuimDaQoV/view" },
-  { image: "/images/Exhibited_Frames/Rhythm.webp", label: "Rhythm", link: "https://drive.google.com/file/d/1aOUfwOvkK8VUGCDgKZWO8oJqZwjOti4Q/view" }
+  { image: "/images/Exhibited_Frames/Delicate.webp", label: "Delicate", link: "#" },
+  { image: "/images/Exhibited_Frames/Gaze.webp", label: "Gaze", link: "#" },
+  { image: "/images/Exhibited_Frames/Ink_&_Imagination.webp", label: "Ink & Imagination", link: "#" },
+  { image: "/images/Exhibited_Frames/Grandeur.webp", label: "Grandeur", link: "#" },
+  { image: "/images/Exhibited_Frames/Rhythm.webp", label: "Rhythm", link: "#" }
 ];
 
 const SCATTER_DATA = [
