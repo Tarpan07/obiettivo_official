@@ -264,13 +264,13 @@ export default function TeamClient() {
               {/* Decorative side accent line */}
               <div className="absolute left-0 top-[20%] bottom-[20%] w-[3px] bg-blue-500 rounded-r-lg" />
 
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="popLayout">
                 <motion.div
                   key={activeBoardIndex}
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 15 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="flex flex-col items-center lg:items-start"
                 >
                   <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 font-sora">
@@ -292,24 +292,24 @@ export default function TeamClient() {
             <div className="order-1 lg:order-2 relative w-full h-[350px] sm:h-[440px] md:h-[540px] lg:h-[620px] flex items-center justify-center overflow-hidden md:overflow-visible">
               <DepthCarousel
                 items={boardMembers.map(m => ({ image: m.image, alt: m.name }))}
-                depth={200}
-                spread={100}
-                tilt={16}
+                depth={isMobile ? 120 : 200}
+                spread={isMobile ? 60 : 100}
+                tilt={isMobile ? 12 : 16}
                 tiltDirection="right"
-                perspective={1400}
-                visibleCards={3}
+                perspective={isMobile ? 1000 : 1400}
+                visibleCards={isMobile ? 2 : 3}
                 falloff={0.2}
                 blur={4}
                 autoplay={false}
                 loop
-                cardWidth={270}
-                cardHeight={365}
+                cardWidth={isMobile ? 220 : 270}
+                cardHeight={isMobile ? 300 : 365}
                 radius={18}
                 tint="#05060a"
                 duration={700}
                 ease="power3.out"
                 onChange={(idx) => setActiveBoardIndex(idx)}
-                showControls
+                showControls={!isMobile}
                 showIndicators
               />
             </div>

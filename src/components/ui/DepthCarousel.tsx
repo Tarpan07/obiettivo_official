@@ -58,6 +58,7 @@ interface CarouselConfig {
 
 interface DragState {
   x: number;
+  y: number;
   startPos: number;
   lastX: number;
   lastT: number;
@@ -291,6 +292,7 @@ const DepthCarousel = ({
     tweenRef.current?.kill();
     dragRef.current = {
       x: e.clientX,
+      y: e.clientY,
       startPos: posRef.current,
       lastX: e.clientX,
       lastT: performance.now(),
@@ -307,10 +309,20 @@ const DepthCarousel = ({
       const cfg = cfgRef.current;
       const stepPx = Math.max(cfg.cardWidth * 0.55 * scaleRef.current, 40);
       const dx = e.clientX - drag.x;
-      if (!drag.moved && Math.abs(dx) > 4) {
-        drag.moved = true;
-        rootRef.current?.setPointerCapture(drag.id);
+      const dy = e.clientY - drag.y;
+
+      if (!drag.moved) {
+        // If vertical movement dominates (user scrolling down page), cancel carousel drag
+        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 6) {
+          dragRef.current = null;
+          return;
+        }
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
+          drag.moved = true;
+          rootRef.current?.setPointerCapture(drag.id);
+        }
       }
+
       if (!drag.moved) return;
       const now = performance.now();
       const dt = Math.max(now - drag.lastT, 1);
