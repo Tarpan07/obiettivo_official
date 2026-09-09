@@ -27,38 +27,39 @@ const PROJECT_SLIDES = [
     badge: "Project III",
     title: "CAMPUS CHRONICLES",
     heading: "Campus Chronicles",
-    description: "Celebrating the campus of NIT Silchar, documented in frames from tranquil lakes to historic corridors."
+    description: "Celebrating the campus of NIT Silchar, documented in frames from tranquil lakes to historic corridors.",
+    exploreLink: "/gallery"
   }
 ];
 
 const ACCORDION_ITEMS = [
-  { image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80", label: "Alpine Sanctuary", link: "#" },
-  { image: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=900&q=80", label: "Neon Dreams", link: "#" },
-  { image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=900&q=80", label: "Canopy Light", link: "#" },
-  { image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80", label: "Reflections", link: "#" },
-  { image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=900&q=80", label: "Nebula Pines", link: "#" }
+  { image: "/images/Exhibited_Frames/Delicate.webp", label: "Delicate", link: "https://drive.google.com/file/d/1w84aTzGOk4mAUClu9tYriSI5OLFuI_0L/view" },
+  { image: "/images/Exhibited_Frames/Gaze.webp", label: "Gaze", link: "https://drive.google.com/file/d/1lYbip1INLICZRQfq4zIrwJz7sAbAlrWl/view" },
+  { image: "/images/Exhibited_Frames/Ink_&_Imagination.webp", label: "Ink & Imagination", link: "https://drive.google.com/file/d/1kDA0LcvVBX05zZsBcP5efH4fOfYxKbYV/view" },
+  { image: "/images/Exhibited_Frames/Grandeur.webp", label: "Grandeur", link: "https://drive.google.com/file/d/1FPCqeNuVjTtvRJr7LbxlAQkXuimDaQoV/view" },
+  { image: "/images/Exhibited_Frames/Rhythm.webp", label: "Rhythm", link: "https://drive.google.com/file/d/1aOUfwOvkK8VUGCDgKZWO8oJqZwjOti4Q/view" }
 ];
 
 const SCATTER_DATA = [
   {
     heading: "PERSPECTIVES",
     images: [
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80"
+      "/images/projects_scattered/perspective1.webp",
+      "/images/projects_scattered/perspective2.webp"
     ]
   },
   {
     heading: "LIGHT & SHADOW",
     images: [
-      "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+      "/images/projects_scattered/light&shadow2.webp",
+      "/images/projects_scattered/light&shadow1.webp"
     ]
   },
   {
     heading: "STORIES UNTOLD",
     images: [
-      "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+      "/images/projects_scattered/storiesUntold1.webp",
+      "/images/projects_scattered/storiesUntold2.webp"
     ]
   }
 ];
