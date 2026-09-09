@@ -145,10 +145,10 @@ export default function GalleryClient() {
       ? GALLERY_ITEMS
       : GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
 
-  const masonryItems = filteredItems.map((item) => {
-    // Generate distinct heights for staggered masonry layout
-    const heights = [320, 390, 270, 360, 310, 400, 280, 370, 330, 420];
-    const height = heights[(item.id - 1) % heights.length];
+  const masonryItems = filteredItems.map((item, index) => {
+    // Generate balanced distinct heights for staggered masonry layout
+    const heights = [320, 280, 360, 300, 290, 370, 340, 290, 310, 290];
+    const height = heights[index % heights.length];
     return {
       id: item.id.toString(),
       img: item.image,
