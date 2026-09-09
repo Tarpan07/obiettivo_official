@@ -19,6 +19,9 @@ const mobileJuniorExecItems: MorphItem[] = [
   },
   {
     image: "/images/team/junior/dsc.webp"
+  },
+  {
+    image: "/images/team/junior/junior-4.webp"
   }
 ];
 
@@ -28,6 +31,9 @@ const desktopJuniorExecItems: MorphItem[] = [
   },
   {
     image: "/images/team/junior/dsc.webp"
+  },
+  {
+    image: "/images/team/junior/junior-4.webp"
   }
 ];
 
